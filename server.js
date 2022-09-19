@@ -1,24 +1,14 @@
-const express = require('express');//importa express
-const app = express();//inicializa express o crea una instancia de él.
+const app = require('./app')
+const { mongoConnection } = require('./databases/configuration')
+const dotenv = require('dotenv')
+dotenv.config()
 
-const tipoEquipos=[
-{
-    nombre:'Computo',
-    Estado:true,
-    fechaCreacion: new Date()
-},
-{
-    nombre:'Computo',
-    Estado:true,
-    fechaCreacion: new Date()
-}
-]
+app.set('port', process.env.PORT || 3000); //configuración del puerto, si no existe un puerto 
+//definido en el sistema operativo, se usa el puerto 3000
 
-app.get('/',(req,res)=>{
-    return res.json(tipoEquipos)
-});
+const connection = mongoConnection();
 
 //inicializa el servidor en el puerto 3000
-app.listen(3000,()=>{
-    console.log('Escuchando en el puerto 3000')
+app.listen(app.get('port'),()=>{
+    console.log(`Escuchando en el puerto ${app.get('port')}`)
 })
