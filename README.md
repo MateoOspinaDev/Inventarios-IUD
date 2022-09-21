@@ -1,9 +1,8 @@
-#Inventario equipo IUD - Back-end
+# Inventario equipo IUD - Back-end
 
-##
-git clone https://github.com/MateoOspinaDev/Inventarios-IUD-back.git
+## git clone https://github.com/MateoOspinaDev/Inventarios-IUD-back.git
 
-##instalar
+## instalar
 cd <Inventarios-IUD-back>
 npm install
 
