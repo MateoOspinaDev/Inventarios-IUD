@@ -20,7 +20,17 @@ const createTipoEquipo = async (req=request, res=response) =>{
     res.status(201).json(req.body);
 }
 
-const getTipoEquipo = (req, res) =>{
+const getTipoEquipo = async (req=request, res=response) =>{
+    try{
+        console.log(req.query)
+        const estado = req.query.estado//obtenemos el query de la peticion
+        const query = {estado: estado} //Condicionamos la busqueda
+        const tipoequiposDB = await TipoEquipo.find()//En find podemos pasarle un objeto con las condiciones de busqueda
+        return res.json(tipoequiposDB)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 
 }
 
