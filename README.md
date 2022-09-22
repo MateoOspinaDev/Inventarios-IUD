@@ -3,7 +3,7 @@
 ## git clone https://github.com/MateoOspinaDev/Inventarios-IUD-back.git
 
 ## instalar
-cd <Inventarios-IUD-back>
+cd < Inventarios-IUD-back >
 npm install
 
 ## crear .env
