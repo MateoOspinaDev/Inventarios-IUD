@@ -3,7 +3,7 @@ const {createMarca,
     getMarca, 
     getMarcaByID, 
     updateMarcaByID, 
-    deleteMarcaByID } = require('../controllers/tipoEquipoController');
+    deleteMarcaByID } = require('../controllers/marcaController');
 
     const router = Router();
 

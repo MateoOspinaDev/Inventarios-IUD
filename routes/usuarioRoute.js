@@ -3,7 +3,7 @@ const {createUsuario,
     getUsuario, 
     getUsuarioByID, 
     updateUsuarioByID, 
-    deleteUsuarioByID } = require('../controllers/tipoEquipoController');
+    deleteUsuarioByID } = require('../controllers/usuarioController');
 
     const router = Router();
 
