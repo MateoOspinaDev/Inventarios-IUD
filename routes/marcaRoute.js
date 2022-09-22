@@ -1,16 +1,16 @@
 const {Router} = require('express');
-const {createTipoEquipo, 
-    getTipoEquipo, 
-    getTipoEquipoByID, 
-    updateTipoEquipoByID, 
-    deleteTipoEquipoByID } = require('../controllers/tipoEquipoController');
+const {createMarca, 
+    getMarca, 
+    getMarcaByID, 
+    updateMarcaByID, 
+    deleteMarcaByID } = require('../controllers/tipoEquipoController');
 
     const router = Router();
 
-    router.post('/', createTipoEquipo);
-    router.get('/', getTipoEquipo);
-    router.get('/:id', getTipoEquipoByID);
-    router.put('/:id', updateTipoEquipoByID);
-    router.delete('/:id', deleteTipoEquipoByID);   
+    router.post('/', createMarca);
+    router.get('/', getMarca);
+    router.get('/:id', getMarcaByID);
+    router.put('/:id', updateMarcaByID);
+    router.delete('/:id', deleteMarcaByID);   
 
     module.exports = router;
