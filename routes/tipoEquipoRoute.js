@@ -13,4 +13,4 @@ const {createTipoEquipo,
     router.put('/:id', updateTipoEquipoByID);
     router.delete('/:id', deleteTipoEquipoByID);   
 
-    module.exports = router;
+    module.exports = router; 
