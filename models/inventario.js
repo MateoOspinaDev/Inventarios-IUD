@@ -13,13 +13,13 @@ const InventarioSchema = Schema({
             unique: true
         },
         descripcion:{
-            type: string
+            type: String
         },
         foto:{
-            type: string
+            type: String
         },
         color:{
-            type: string
+            type: String
         },
         fechaCompra:{
             type: Date,
