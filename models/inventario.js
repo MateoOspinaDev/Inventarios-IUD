@@ -8,9 +8,8 @@ const InventarioSchema = Schema({
             unique: true
         },
         modelo:{
-            type: Boolean,
-            required: [true, 'El nombre es obligatorio'],
-            unique: true
+            type: String,
+            required: [true, 'El nombre es obligatorio']
         },
         descripcion:{
             type: String

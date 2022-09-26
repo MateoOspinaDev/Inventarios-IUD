@@ -49,15 +49,16 @@ const getUsuarioByID = async (req, res) =>{
 const updateUsuarioByID = async (req, res) =>{
     try{
         const id = req.params.id
-        const data = req.body;
-        data.FechaActualizacion = new Date();
+        const data = req.body
+        console.log(data)
+        console.log(id)
+        data.fechaActualizacion = new Date()
+        console.log(data)
         const usuario = await Usuario.findByIdAndUpdate(id, data, {new: true})
-        console.log(usuario)
-        return res.json(usuario)
+        return res.status(201).json(usuario)
     }catch(e){
-        console.log(e)
-        return res.status(500).json({msg: e})  
-    }
+        return res.status(500).json({msj: e})
+    }  
 }
 
 const deleteUsuarioByID = async (req, res) =>{
