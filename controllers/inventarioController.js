@@ -83,6 +83,20 @@ try{
     const inventarioBD = await Inventario.findById(id)
     .populate({
         path: 'usuario',
+        match: { estado: true}
+    })
+    .populate({
+        path: 'marca',
+        match: { estado: true}
+    })
+    .populate({
+        path: 'estado'
+    })
+    .populate({
+        path: 'tipoEquipo'
+    })
+    .populate({
+        path: 'usuario',
         match: {estado: true}
     })
     res.json(inventarioBD)
