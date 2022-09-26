@@ -118,8 +118,7 @@ const deleteInventarioByID = async (req = request,
 
     try{
         const { id } = req.params
-        const data = req.body
-        await Inventario.findByIdAndDelete(id, data, {new: true})
+        await Inventario.findByIdAndDelete(id)
         return res.status(204).json({})
     }catch(e){
         console.log(e)
