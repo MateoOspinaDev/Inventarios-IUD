@@ -5,6 +5,7 @@ const app = express();
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
+
 const tipoEquipoRoute = require('./routes/tipoEquipoRoute'); //Importamos las rutas de tipoEquipo
 const usuarioRoute = require('./routes/usuarioRoute'); //Importamos las rutas de usuario
 const marcaRoute = require('./routes/marcaRoute');
@@ -30,8 +31,10 @@ app.use('/api/estadoEquipos', estadoEquipoRoute);
 app.use('/api/inventarios', inventarioRoute);
 
 
-app.get('/',(req,res)=>{
-    return res.json({})
+app.get("*", (req, res) => {
+    return res.status(404).json({
+        msj: 'pagina no encontrada'
+    });
 });
 
 module.exports = app;
