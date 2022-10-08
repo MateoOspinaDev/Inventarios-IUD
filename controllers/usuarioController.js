@@ -2,38 +2,77 @@ const Usuario = require('../models/usuario');
 const {request, response} = require('express');//Para ser usado en los req y res de los metodos
 
 const createUsuario = async (req=request, res=response) =>{
-    const nombre = (req.body.nombre) 
-    ? req.body.nombre.toUpperCase()
-    : '';
-    const usuarioBD = await Usuario.findOne({nombre});
+        try{
+            const data = req.body
+            const email = data.email
+            console.log(data)
+            const usuarioBD = await Usuario.findOne({ email })
+            if(usuarioBD){
+                return res.status(400).json({msg: 'Ya existe usuario'})
+            }
+            const usuario = new Usuario(data)
+            console.log(usuario)
+            await usuario.save()
+            return res.status(201).json(usuario)
+        }catch(e){
+            console.log(e)
+            return res.status(500).json({e})
+        }
+}
 
-    if (usuarioBD){
-        return res.status(400).json({
-            msg: `El usuario con ${nombre} ya existe`
-        });
+const getUsuario = async (req, res) =>{
+    try{
+        console.log(req.query)
+        const estado = req.query.estado
+        const query = {estado: estado} 
+        const usuariosDB = await Usuario.find(query)
+        return res.json(usuariosDB)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
     }
-    const datos = {
-        nombre
+}
+
+const getUsuarioByID = async (req, res) =>{
+    try{
+        const estado = req.query.estado
+        const id = req.params.id
+        const query = {estado: estado, _id: id}
+        const usuarioDB = await Usuario.findOne(query)
+        return res.json(usuarioDB)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
     }
-    const usuario = new Usuario(datos);
-    await usuario.save();
-    res.status(201).json(req.body);
 }
 
-const getUsuario = (req, res) =>{
-
+const updateUsuarioByID = async (req, res) =>{
+    try{
+        const id = req.params.id
+        const data = req.body
+        console.log(data)
+        console.log(id)
+        data.fechaActualizacion = new Date()
+        console.log(data)
+        const usuario = await Usuario.findByIdAndUpdate(id, data, {new: true})
+        return res.status(201).json(usuario)
+    }catch(e){
+        return res.status(500).json({msj: e})
+    }  
 }
 
-const getUsuarioByID = (req, res) =>{
-
-}
-
-const updateUsuarioByID = (req, res) =>{
-
-}
-
-const deleteUsuarioByID = (req, res) =>{
-
+const deleteUsuarioByID = async (req, res) =>{
+    try{
+        const id = req.params.id
+        const usuario = await Usuario.findByIdAndDelete(id)
+        if(!usuario){
+            return res.status(404).json({msg: 'No existe el tipo de equipo'})
+        }
+        return res.status(204).json({msg: 'Tipo de equipo eliminado'})
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 }
 
 module.exports = { 

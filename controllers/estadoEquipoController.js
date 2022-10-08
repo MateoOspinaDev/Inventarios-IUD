@@ -21,22 +21,58 @@ const createEstadoEquipo = async (req=request, res=response) =>{
 }
 
 const getEstadoEquipo = async (req, res) =>{
-    EstadoEquipo.find(function(err, articles) {
-        if (err) return console.error(err);
-        console.log(articles);
-      });
+try{
+        console.log(req.query)
+        const estado = req.query.estado//obtenemos el query de la peticion
+        const query = {estado: estado} //Condicionamos la busqueda
+        //Find tambien puede ir vacio, y traera todos los registros
+        const estadoequiposDB = await EstadoEquipo.find(query)//En find podemos pasarle un objeto con las condiciones de busqueda
+        return res.json(estadoequiposDB)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 }
 
-const getEstadoEquipoByID = (req, res) =>{
-
+const getEstadoEquipoByID = async (req, res) =>{
+    try{
+        const estado = req.query.estado
+        const id = req.params.id
+        const query = {estado: estado, _id: id}
+        const estadoequipoDB = await EstadoEquipo.findOne(query)
+        return res.json(estadoequipoDB)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 }
 
-const updateEstadoEquipoByID = (req, res) =>{
-
+const updateEstadoEquipoByID = async (req, res) =>{
+    try{
+        const id = req.params.id
+        const data = req.body;
+        data.FechaActualizacion = new Date();
+        const estadoEquipo = await EstadoEquipo.findByIdAndUpdate(id, data, {new: true})
+        console.log(estadoEquipo)
+        return res.json(estadoEquipo)
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 }
 
-const deleteEstadoEquipoByID = (req, res) =>{
-
+const deleteEstadoEquipoByID = async (req, res) =>{
+    try{
+        const id = req.params.id
+        const estadoEquipo = await EstadoEquipo.findByIdAndDelete(id)
+        if(!estadoEquipo){
+            return res.status(404).json({msg: 'No existe el tipo de equipo'})
+        }
+        return res.status(204).json({msg: 'Tipo de equipo eliminado'})
+    }catch(e){
+        console.log(e)
+        return res.status(500).json({msg: e})  
+    }
 }
 
 module.exports = { 

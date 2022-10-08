@@ -5,9 +5,10 @@ const UsuarioSchema = Schema({
         type: String,
         required: [true, 'El nombre es obligatorio'],
     },
-    email:{
+    email: {
         type: String,
-        required: [true, 'El email es obligatorio']
+        required: [true, 'Email requerido'],
+        unique: true
     },
     estado:{
         type: Boolean,
