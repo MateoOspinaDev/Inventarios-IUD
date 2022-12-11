@@ -11,6 +11,8 @@ const usuarioRoute = require('./routes/usuarioRoute'); //Importamos las rutas de
 const marcaRoute = require('./routes/marcaRoute');
 const estadoEquipoRoute = require('./routes/estadoEquipoRoute');
 const inventarioRoute = require('./routes/inventarioRoute');
+
+const auth = require('./routes/auth') //autenticación
 /**
  * Middlewares: Es una función que se ejecuta antes de que llegue a la ruta
  */
@@ -30,6 +32,7 @@ app.use('/api/marcas', marcaRoute);
 app.use('/api/estadoEquipos', estadoEquipoRoute);
 app.use('/api/inventarios', inventarioRoute);
 
+app.use('/api/auth', auth);//autenticacion y autorizacion
 
 app.get("*", (req, res) => {
     return res.status(404).json({
