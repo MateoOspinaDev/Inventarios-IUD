@@ -1,6 +1,6 @@
 # Inventario equipo IUD - Back-end
 
-## Clonar ptoyecto
+## Clonar proyecto
 - git clone https://github.com/MateoOspinaDev/Inventarios-IUD-back.git
 
 ## instalar dependencias
